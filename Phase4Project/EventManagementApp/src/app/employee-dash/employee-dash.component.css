@@ -1,0 +1,30 @@
+
+h1{
+    text-align: center;
+ 
+}
+ h2{
+    color: white;
+}
+.parent{ 
+    width: 30%; 
+} 
+.float-child { 
+    float: left;
+    width: 76%; 
+} 
+
+.yellow { 
+    margin-left: 10%; 
+    height: 100px; 
+}
+.flex-parent-element {
+    display: flex;
+  }
+  
+  .flex-child-element {
+    margin: 1px;
+  }
+ body{
+    margin: 40px 100px; 
+ }

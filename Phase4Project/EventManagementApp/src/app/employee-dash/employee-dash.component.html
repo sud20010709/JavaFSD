@@ -1,0 +1,144 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <h2>Event Management App</h2>
+    <div class="d-flex">
+      <button (click)="clickAddEmployee()" type="button" class="btn btn-warning" data-toggle="modal"
+        data-target="#exampleModal">Add Employee</button>
+      <button routerLink="/login" class="btn btn-primary mx-3">Log Out</button>
+
+    </div>
+  </div>
+</nav>
+
+<!-- Jumbotron -->
+<body>
+<div class="p-3 mb-4 bg-light rounded-3">
+  <div class="container fluid py-5">
+    <h1 text-align="center" class="display-5 fw-bold">Employee Records Mangement</h1>
+  </div>
+    <div class="parent">
+      <div class="float-child">
+        <div class="red">
+          <br> <br>
+              <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Search Employee Details</h6>
+              <div class="flex-parent-element">
+                <div class="flex-child-element ">
+                <input type="text" class="form-control" placeholder="Enter Employee ID" [(ngModel)]="searchID" />
+                </div>
+                <div class="flex-child-element ">
+                  <button class="btn btn-outline-secondary" type="button" (click)="getEmployee()">
+                    Search
+                  </button>
+                </div>
+              </div>
+            
+          <div *ngIf="currentEmployee" class="edit-form">
+            <h4>Employee Detail</h4>
+            <form>
+              <div class="form-group">
+                <label for="id">Employee ID</label>
+                <input type="text" class="form-control" id="id" [(ngModel)]="currentEmployee['id']" name="id" />
+              </div>
+              <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" class="form-control" id="firstname" [(ngModel)]="currentEmployee['firstname']"
+                  name="firstname" />
+              </div>
+
+              <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" id="lastname" [(ngModel)]="currentEmployee['lastname']"
+                  name="lastname" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" [(ngModel)]="currentEmployee['email']"
+                  name="email" />
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table Shown Here -->
+    <div class="float-child">
+      <div class="yellow">
+        <br>
+        <table class="table mt-4">
+          <thead>
+            <tr>
+              <th scope="col">Employee ID</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Action</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor=" let data of allEmployeeData">
+              <td>{{data.id}}</td>
+              <td>{{data.firstname}}</td>
+              <td>{{data.lastname}}</td>
+              <td>{{data.email}}</td>
+              <td>
+                <div class="flex-parent-element">
+                  <div class="flex-child-element ">
+                    <button (click)=" onEditEmployee(data)" type="button" class="btn btn-success" data-toggle="modal"
+                      data-target="#exampleModal">Edit </button>&nbsp;
+                  </div>
+                  <div class="flex-child-element">
+                    <button (click)=" deleteEmployeeData(data)" type="button" class="btn btn-danger">Delete</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Employee Records Form</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formValue">
+            <div class="mb-3">
+              <label for="exampleInputEmail1">FirstName</label>
+              <input type=text formControlName="firstname" class="form-control" placeholder="First Name"
+                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1">LastName</label>
+              <input type=text formControlName="lastname" class="form-control" placeholder="Last Name"
+                id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1">Email</label>
+              <input type=text formControlName="email" class="form-control" placeholder="Email" id="exampleInputEmail1"
+                aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Clear</button>
+          <button *ngIf="showAdd" type="button" class="btn btn-primary" (click)="addEmployee()">Add Employee</button>
+          <button *ngIf="showbtn" type="button" class="btn btn-primary" (click)="updateEmployeeDetail()">Update
+            Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

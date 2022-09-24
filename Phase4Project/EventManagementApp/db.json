@@ -1,0 +1,29 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "firstname": "Sebastian",
+      "lastname": "Eschweiler",
+      "email": "sebastian@codingthesmartway.com"
+    },
+    {
+      "id": 2,
+      "firstname": "Steve",
+      "lastname": "Palmer",
+      "email": "steve@javatpoint.com"
+    },
+    {
+      "id": 3,
+      "firstname": "Ann",
+      "lastname": "Smith",
+      "email": "ann@javatpoint.com"
+    }
+  ],
+  "logindetails": [
+    {
+      "email": "admin@employee.com",
+      "password": "employee",
+      "id": 1
+    }
+  ]
+}
